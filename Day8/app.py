@@ -16,8 +16,11 @@ def encrypt(text, shift):
     text_list = list(text)
     encrypted = ""
     for i in range(0, len(text)):
-        encrypted = encrypted + \
-            alphabet[(alphabet.index(text_list[i])+shift) % 26]
+        if(text_list[i] in alphabet):
+            encrypted = encrypted + \
+                alphabet[(alphabet.index(text_list[i])+shift) % 26]
+        else:
+            encrypted = encrypted+text_list[i]
     return encrypted
 
 
@@ -25,8 +28,11 @@ def decrypt(text, shift):
     text_list = list(text)
     decrypted = ""
     for i in range(0, len(text)):
-        decrypted = decrypted + \
-            alphabet[(alphabet.index(text_list[i])-shift) % 26]
+        if(text_list[i] in alphabet):
+            decrypted = decrypted + \
+                alphabet[(alphabet.index(text_list[i])-shift) % 26]
+        else:
+            decrypted = decrypted + text_list[i]
     return decrypted
 
 
