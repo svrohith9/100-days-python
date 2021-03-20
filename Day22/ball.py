@@ -16,7 +16,7 @@ class Ball(Turtle):
         self.goto(new_x, new_y)
 
     def bounce_wall(self):
-        self.y_move *= -1  # here y_move default is 10 so bounce value =-10
+        self.y_move *= -1  # y_move default is 10, so bounce value =-10
 
     def bounce_player(self):
         self.x_move *= -1
