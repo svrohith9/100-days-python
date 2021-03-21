@@ -32,9 +32,8 @@ while not game_over:
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_wall()
 
-    print(ball.distance(right_player), " ", ball.xcor())
     # detect collision with players
-    if ball.xcor() > 360 and ball.distance(right_player) < 50:
+    if ball.xcor() > 360 and ball.distance(right_player.player) < 50 or ball.xcor() < -360 and ball.distance(left_player.player) < 50:
         ball.bounce_player()
 
 
