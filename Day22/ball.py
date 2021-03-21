@@ -20,3 +20,7 @@ class Ball(Turtle):
 
     def bounce_player(self):
         self.x_move *= -1
+
+    def reset_postion(self):
+        self.goto(0, 0)
+        self.x_move *= -1  # once game reset, starts with opponent turn

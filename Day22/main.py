@@ -3,7 +3,7 @@ from turtle import Turtle, Screen
 from player import Player
 from ball import Ball
 import time
-
+from score_board import Scoreboard
 
 scn = Screen()
 scn.bgcolor("black")
@@ -14,6 +14,7 @@ scn.tracer(0)  # remove default square animation
 left_player = Player((-380, 0))
 right_player = Player((380, 0))
 ball = Ball()
+score = Scoreboard()
 
 scn.listen()
 scn.onkey(right_player.go_up, "Up")
@@ -35,6 +36,13 @@ while not game_over:
     # detect collision with players
     if ball.xcor() > 360 and ball.distance(right_player.player) < 50 or ball.xcor() < -360 and ball.distance(left_player.player) < 50:
         ball.bounce_player()
+
+    if ball.xcor() > 400:
+        ball.reset_postion()
+        score.left_score()
+    if ball.xcor() < -400:
+        ball.reset_postion()
+        score.right_score()
 
 
 scn.exitonclick()

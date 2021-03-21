@@ -12,8 +12,10 @@ class Player(Turtle):
 
     def go_up(self):
         new_y = self.player.ycor()+20
-        self.player.goto(self.player.xcor(), new_y)
+        if new_y < 280:
+            self.player.goto(self.player.xcor(), new_y)
 
     def go_down(self):
         new_y = self.player.ycor()-20
-        self.player.goto(self.player.xcor(), new_y)
+        if new_y > -280:
+            self.player.goto(self.player.xcor(), new_y)
