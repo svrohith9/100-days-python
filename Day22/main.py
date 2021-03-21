@@ -25,7 +25,7 @@ scn.onkey(left_player.go_down, "s")
 game_over = False
 
 while not game_over:
-    time.sleep(0.1)
+    time.sleep(ball.ball_speed)
     scn.update()
     ball.move()
 
@@ -36,13 +36,16 @@ while not game_over:
     # detect collision with players
     if ball.xcor() > 360 and ball.distance(right_player.player) < 50 or ball.xcor() < -360 and ball.distance(left_player.player) < 50:
         ball.bounce_player()
+        ball.ball_speed *= 0.9  # increase the speed of the ball after each touch
 
     if ball.xcor() > 400:
         ball.reset_postion()
         score.left_score()
+        ball.ball_speed = 0.1
     if ball.xcor() < -400:
         ball.reset_postion()
         score.right_score()
+        ball.ball_speed = 0.1
 
 
 scn.exitonclick()
