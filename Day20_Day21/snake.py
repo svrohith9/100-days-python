@@ -49,3 +49,12 @@ class Snake:
 
     def extend_snake(self):
         self.add_segment(self.segments[-1].position())
+
+    def reset(self):
+        # setting pos of dead snakes to 999,999
+        for seg in self.segments:
+            seg.goto(999, 999)
+
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
