@@ -20,3 +20,12 @@ class Player(Turtle):
     def go_down(self):
         new_y = self.ycor()-10
         self.goto(self.xcor(), new_y)
+
+    def goal_reached(self):
+        if self.ycor() >= FINISH_LINE_Y:
+            return True
+        else:
+            return False
+
+    def goto_start(self):
+        self.goto(STARTING_POSITION)
