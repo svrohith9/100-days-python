@@ -1,3 +1,4 @@
+import random
 items = [1, 23, 4, 5]
 new_numbers = [i+1 for i in items]
 print(new_numbers)
@@ -30,3 +31,22 @@ with open(".\\Day26\\file2.txt") as file:
     print(file.read())
 
 print(intersection_data)
+
+print("***************************")
+# Dictionary comprehension
+names = ["james", "harry", "duke"]
+
+names_scores = {name: random.randint(1, 100) for name in names}
+print(names_scores)
+
+
+passed_students = {key: value for key,
+                   value in names_scores.items() if value >= 50}
+print(passed_students)
+
+
+sentence = "What is the Airspeed Velocity of an Unladen Swallow?"
+
+words = sentence.split()
+words_dic = {word: len(word) for word in words}
+print(words_dic)
