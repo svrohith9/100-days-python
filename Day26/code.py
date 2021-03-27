@@ -50,3 +50,18 @@ sentence = "What is the Airspeed Velocity of an Unladen Swallow?"
 words = sentence.split()
 words_dic = {word: len(word) for word in words}
 print(words_dic)
+
+print("*****************************")
+
+
+import pandas as pd
+
+student_dic={
+    "student":["Nick","Brian","Kim"],
+    "scores":[20,40,33]
+}
+
+student_dataframe=pd.DataFrame(student_dic)
+
+for index,row in student_dataframe.iterrows():
+  print(row)
