@@ -2,11 +2,36 @@ import tkinter
 import random
 from tkinter.constants import E, END
 from typing import Text
+from tkinter import messagebox
 
 
 window = tkinter.Tk()
 window.title("Password Manager")
 window.config(padx=30, pady=50)
+
+# password Gen
+
+
+def generate_pwd():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+               'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    nr_letters = random.randint(8, 10)
+    nr_symbols = random.randint(2, 4)
+    nr_numbers = random.randint(2, 4)
+    passkey = ""
+
+    for i in range(1, nr_letters+1):
+        passkey = passkey + random.choice(letters)
+    for i in range(1, nr_symbols+1):
+        passkey = passkey + random.choice(symbols)
+    for i in range(1, nr_numbers+1):
+        passkey = passkey + random.choice(numbers)
+    password_list = list(passkey)
+    random.shuffle(password_list)
+    password.insert(0, "".join(password_list))
 
 
 # Canvas logo
@@ -21,11 +46,16 @@ def submit_data():
     w = website.get()
     e = email.get()
     p = password.get()
-    with open(file=".\\Day29\\password-manager\\pwd-list.txt", mode="a") as data:
-        data.write(f"{w}, {e}, {p}\n")
 
-    website.delete(0, END)
-    password.delete(0, END)
+    if w == "" or e == "" or p == "":
+        messagebox.showerror(
+            title="Error", message="Mandatory fields missing !")
+    else:
+        if messagebox.askokcancel(title=w, message=f"Email: {e}\n Password: {p}"):
+            with open(file=".\\Day29\\password-manager\\pwd-list.txt", mode="a") as data:
+                data.write(f"{w}, {e}, {p}\n")
+        website.delete(0, END)
+        password.delete(0, END)
 
 
 # Generate password button
@@ -56,7 +86,8 @@ password_label = tkinter.Label(text="Password :")
 password_label.grid(column=0, row=3)
 
 # Generate password button
-gen_pwd_btn = tkinter.Button(text=" Generate password", bg="white", width=20)
+gen_pwd_btn = tkinter.Button(
+    text=" Generate password", bg="white", width=20, command=generate_pwd)
 gen_pwd_btn.grid(column=2, row=3)
 
 # Submit Button
