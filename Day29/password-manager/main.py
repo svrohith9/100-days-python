@@ -3,6 +3,7 @@ import random
 from tkinter.constants import E, END
 from typing import Text
 from tkinter import messagebox
+import json
 
 
 window = tkinter.Tk()
@@ -47,13 +48,27 @@ def submit_data():
     e = email.get()
     p = password.get()
 
+    data_dto = {
+        w: {
+            "email": e,
+            "password": p
+        }
+    }
+
     if w == "" or e == "" or p == "":
         messagebox.showerror(
             title="Error", message="Mandatory fields missing !")
     else:
         if messagebox.askokcancel(title=w, message=f"Email: {e}\n Password: {p}"):
-            with open(file=".\\Day29\\password-manager\\pwd-list.txt", mode="a") as data:
-                data.write(f"{w}, {e}, {p}\n")
+            try:
+                with open(file=".\\Day29\\password-manager\\pwd-list.json", mode="r") as data:
+                    current_json_data = json.load(data)
+                    current_json_data.update(data_dto)
+            except FileNotFoundError:
+                current_json_data = data_dto
+            finally:
+                with open(file=".\\Day29\\password-manager\\pwd-list.json", mode="w") as data:
+                    json.dump(current_json_data, data, indent=4)
         website.delete(0, END)
         password.delete(0, END)
 
