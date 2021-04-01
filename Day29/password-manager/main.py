@@ -73,19 +73,42 @@ def submit_data():
         password.delete(0, END)
 
 
-# Generate password button
+def search_password():
+    search_key = website.get()
+    try:
+        with open(file=".\\Day29\\password-manager\\pwd-list.json", mode="r") as data:
+            current_json_data = json.load(data)
+    except FileNotFoundError:
+        messagebox.showerror(
+            title="Error", message="No Data saved !")
+    else:
+        pwd_data = {}
+        if search_key in current_json_data:
+            email = current_json_data[search_key]["email"]
+            pwd = current_json_data[search_key]["password"]
+            messagebox.showinfo(
+                title=search_key, message=f"Email: {email}\n Password: {pwd}")
+        else:
+            messagebox.showerror(
+                title="Error", message="No Password data available")
+    website.delete(0, END)
+    password.delete(0, END)
 
 
 # Website box with label
-website = tkinter.Entry(width=40)
-website.grid(column=1, row=1, columnspan=2)
+website = tkinter.Entry(width=25)
+website.grid(column=1, row=1)
 website.focus()  # default cursor location
 
 website_label = tkinter.Label(text="Website :")
 website_label.grid(column=0, row=1)
 
+search_data = tkinter.Button(
+    text=" Search password", bg="white", width=20, command=search_password)
+search_data.grid(column=2, row=1)
+
 # email box with label
-email = tkinter.Entry(width=40)
+email = tkinter.Entry(width=50)
 email.grid(column=1, row=2, columnspan=2)
 email.insert(0, "harrypotter@hogwards.com")  # frequent used mail
 
@@ -94,7 +117,7 @@ email_label.grid(column=0, row=2)
 
 
 # password box with label
-password = tkinter.Entry(width=20)
+password = tkinter.Entry(width=25)
 password.grid(column=1, row=3)
 
 password_label = tkinter.Label(text="Password :")
