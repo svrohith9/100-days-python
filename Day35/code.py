@@ -1,6 +1,6 @@
 import requests
 
-apikey = "b6af18726beeddb3570ceacf41e8e0ab"
+apikey = {{API_KEY}}
 params = {
     "lat": "37.215520",
     "lon": "-93.292360",
