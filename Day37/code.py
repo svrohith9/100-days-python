@@ -1,10 +1,11 @@
 import requests
 
 pixela_create_user = "https://pixe.la/v1/users"
-
+pixela_username = "svrohith9"
+pixela_token = "thisissecret",  # create your custom key here
 create_user_params = {
-    "token": "thisissecret",  # create your custom key here
-    "username": "svrohith9",
+    "token": pixela_token,
+    "username": pixela_username,
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
     "thanksCode": "ThisIsThanksCode"
