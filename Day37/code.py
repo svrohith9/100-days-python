@@ -9,7 +9,8 @@ def fetch_date():
 
 pixela_create_user = "https://pixe.la/v1/users"
 pixela_username = "svrohith9"
-pixela_token = "thisissecret",  # create your custom key here
+pixela_token = "thisisisecret"  # create your custom key here
+pixela_graph = "first"
 create_user_params = {
     "token": pixela_token,
     "username": pixela_username,
