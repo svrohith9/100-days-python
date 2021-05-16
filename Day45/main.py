@@ -5,13 +5,17 @@ response = requests.get(url="https://news.ycombinator.com")
 response.raise_for_status()
 
 soup = BeautifulSoup(response.text, "html.parser")
-item_a_tag = soup.find("a", class_="storylink")
-item_name = item_a_tag.getText()
-item_link = item_a_tag.get("href")
+item_a_tag = soup.findAll("a", class_="storylink")
+score_span_tag = soup.findAll("span", class_="score")
 
-score_span_tag = soup.find("span", class_="score")
-item_upvote = score_span_tag.getText()
+item_list_text = [i.getText() for i in item_a_tag]
+item_list_url = [i.get("href") for i in item_a_tag]
 
-print("item Name: ", item_name)
-print("item Link: ", item_link)
-print("item Score: ", item_upvote)
+item_upvote_list = [int(str(i.getText()).split(" ")[0])
+                    for i in score_span_tag]
+
+# item_data = list(zip(item_list_text, item_list_url, item_upvote_list))
+index_val = item_upvote_list.index(max(item_upvote_list))
+print(index_val)
+print(item_upvote_list.pop(index_val))
+print(item_list_text.pop(index_val))
