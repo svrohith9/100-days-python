@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import smtplib
+import ssl
 
 # Get amazon product page using requests.get
 
@@ -21,9 +23,28 @@ span_price = soup.find(
 # extract the price
 # Since the price of the item is 59,999 at this time,
 # Generic assumption:
-# price cannot go down below 1,999, hence i am extracting "59" from the "₹ 59,900.00"
-# triggering an alert if price goes below 40 which is "₹ 40,900.00"
+# price cannot go down below 1,999, hence i am extracting "59" from the "₹ 59,999.00"
+# triggering an alert if price goes below 40 which is "₹ 40,999.00"
 
-amazon_iphone_price = (str(span_price.getText()).split(",")[0][2:])
+amazon_iphone_price = float((str(span_price.getText()).split(",")[0][2:]))
 
-print(amazon_iphone_price)
+# print(amazon_iphone_price)
+
+if(amazon_iphone_price <= 40):
+    port = 587  # For starttls
+    smtp_server = "smtp.gmail.com"
+    sender_email = "my@gmail.com"
+    receiver_email = "your@gmail.com"
+    password = "your password"
+    message = """\
+    Subject: Hi there
+    Your Product price if Dropped Below ₹ 40,999.00
+    This message is sent from Python."""
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.ehlo()  # Can be omitted
+        server.starttls(context=context)
+        server.ehlo()  # Can be omitted
+        server.login(sender_email, password)
+        server.sendmail(sender_email, receiver_email, message)
