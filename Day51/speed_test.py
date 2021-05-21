@@ -12,7 +12,19 @@ class InternetSpeedTwitterBot:
         self.driver.get("https://fast.com")
         time.sleep(10)
         self.down_speed = self.driver.find_element_by_id("speed-value")
-        return self.down_speed.text
+        return int(self.down_speed.text)
 
     def tweet_at_provider(self, username, password):
         self.driver.get("https://twitter.com/login")
+        time.sleep(5)
+        twitter_username = self.driver.find_element_by_xpath(
+            '/html/body/div/div/div/div[2]/main/div/div/div[2]/form/div/div[1]/label/div/div[2]/div/input')
+        twitter_password = self.driver.find_element_by_xpath(
+            '/html/body/div/div/div/div[2]/main/div/div/div[2]/form/div/div[2]/label/div/div[2]/div/input')
+
+        submit = self.driver.find_element_by_xpath(
+            '//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div/div/span/span')
+        # print(username, '::::::::::::', password)
+        twitter_username.send_keys(username)
+        twitter_password.send_keys(password)
+        submit.click()
