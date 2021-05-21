@@ -28,3 +28,13 @@ class InternetSpeedTwitterBot:
         twitter_username.send_keys(username)
         twitter_password.send_keys(password)
         submit.click()
+
+        time.sleep(5)
+        # create tweet
+        tweet = self.driver.find_element_by_xpath(
+            '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div/div/div[2]/div/div/div/div')
+
+        tweet.send_keys(f"God Damn it {self.down_speed.text}")
+        tweet_button = self.driver.find_element_by_xpath(
+            '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div/div/span/span')
+        tweet_button.click()
