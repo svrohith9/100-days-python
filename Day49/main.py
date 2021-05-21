@@ -9,8 +9,8 @@ driver.get("https://www.linkedin.com/login?emailAddress=&fromSignIn=&fromSignIn=
 username = driver.find_element_by_id("username")
 password = driver.find_element_by_name("session_password")
 
-username.send_keys("porfavor1997@gmail.com")
-password.send_keys("Elessvrohith9")
+username.send_keys("YOUR EMAIL")
+password.send_keys("YOUR PASSWORD")
 
 submit = driver.find_element_by_xpath(
     '//*[@id="organic-div"]/form/div[3]/button')
