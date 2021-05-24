@@ -18,4 +18,21 @@ span_all_address = soup.findAll(
     "address", class_="list-card-addr")
 
 all_address = [address.getText() for address in span_all_address]
-print(all_address)
+# print(len(all_address))
+
+div_all_prices = soup.findAll("div", class_="list-card-price")
+# removed $, ',' and other texts "+1b" converted to int
+try:
+    all_prices = [int(price.getText()[1:6].replace(',', ''))
+                  for price in div_all_prices]
+except:
+    print("Error Converting prices from the page")
+finally:
+    print("All houses prices converted to int values")
+# print(len(all_prices))
+
+a_all_urls = soup.findAll(
+    "a", class_="list-card-img", href=True)
+all_urls = [a['href'] for a in a_all_urls]
+
+# print(len(a_all_urls))
