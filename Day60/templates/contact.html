@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" type="text/css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form action="/sendMail" method="POST">
+      <ul class="form-style-1">
+        <li>
+          <label>Name <span class="required">*</span></label
+          ><input type="text" name="name" class="field-divided" />
+        </li>
+        <li>
+          <label>Email <span class="required">*</span></label>
+          <input type="email" name="email" class="field-long" />
+        </li>
+        <li>
+          <label>Subject</label>
+          <input type="text" name="sub" class="field-long" />
+        </li>
+        <li>
+          <label>Your Message <span class="required">*</span></label>
+          <textarea
+            name="message"
+            id="field5"
+            class="field-long field-textarea"
+          ></textarea>
+        </li>
+        <li>
+          <input type="submit" value="Submit" />
+        </li>
+      </ul>
+    </form>
+  </body>
+</html>
