@@ -1,0 +1,26 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Add Data</title>
+  </head>
+  <body>
+    <div class="col3-ft bg01">
+      <h1>Tag a new Location</h1>
+      <div class="tm-dl-teal">
+        <form action="{{url_for('add')}}" method="POST">
+          {{ wtf.quick_form(form) }} {% if form.errors %}
+          <p class="title_3">
+            {% for error in form.errors %} {{ error }} {% endfor %}
+          </p>
+          {% endif %}
+          <p class="title_2">{{message}}</p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

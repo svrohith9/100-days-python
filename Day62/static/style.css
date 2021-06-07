@@ -110,14 +110,14 @@ em {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-weight: normal;
-  color: #009900;
+  color: #036096;
 }
 
-.title_small {
+.title_3 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  color: #009900;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: normal;
+  color: #eb1f1f;
 }
 
 .subtitle {
