@@ -36,7 +36,25 @@ def home():
 def delete():
     message = ""
     if request.method == "POST":
-        pass
+        name = (request.form['name'])
+        all_data = []
+        try:
+            with open('.\\100-days-python\\Day62\\data.csv', 'r', encoding='utf-8') as csv_file:
+                reader = csv.reader(csv_file)
+                for row in reader:
+                    all_data.append(row)
+                    for item in row:
+                        if item == name:
+                            all_data.remove(row)
+                            message = "Successfully Deleted"
+            print("Data removal operation success 1")
+            with open('.\\100-days-python\\Day62\\data.csv', 'w', encoding='utf-8') as csv_file:
+                writer = csv.writer(csv_file)
+                writer.writerows(all_data)
+            print("Delete API Successs")
+        except:
+            message = "Failed to delete"
+        message = "Does not exist"
     return render_template('delete.html', message=message)
 
 
@@ -65,7 +83,7 @@ def all():
         csv_data = csv.reader(csv_file, delimiter=',')
         for row in csv_data:
             dataset.append(row)
-        print(dataset)
+        # print(dataset)
     return render_template('view_all.html', dataset=dataset)
 
 
