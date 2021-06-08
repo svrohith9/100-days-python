@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="col3-ft bg01">
+      <h1>favourite locations</h1>
+      <table class="table">
+        {% for row in dataset %}
+        <tr>
+          {% for item in row %} {% if item[0:4] == "http" %}
+          <td><a style="color: forestgreen" href="{{ item }}">Geo Link</a></td>
+          {% else %}
+          <td>{{ item }}</td>
+          {% endif %} {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="tm-dl-teal">
+      <a href="{{url_for('home')}}">Home</a>
+    </div>
+  </body>
+</html>
