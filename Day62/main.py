@@ -37,8 +37,13 @@ def add():
     message = ""
     if flask.request.method == 'POST':
         if data.validate_on_submit():
-            print(data.name.data)
-            message = "Sucessfully added"
+            with open(".\\100-days-python\\Day62\\data.csv", mode="a", encoding='utf8') as csv_file:
+                csv_file.write(f"\n{data.name.data},"
+                               f"{data.url.data},"
+                               f"{data.food_rating.data},"
+                               f"{data.spot_rating.data},"
+                               f"{data.price_rating.data},")
+                message = "Sucessfully added"
         else:
             message = "failed to add data"
     return render_template('add_data.html', form=data, message=message)
